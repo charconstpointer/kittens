@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kittens/models/podcast_image.dart';
-import 'package:kittens/models/podcast_item.dart';
+import 'package:kittens/models/podcasts/podcast_image.dart';
+import 'package:kittens/models/podcasts/podcast_item.dart';
 part 'post.g.dart';
 
 @JsonSerializable()

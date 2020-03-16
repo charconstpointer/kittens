@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kittens/models/podcast_item.dart';
+import 'package:kittens/models/podcasts/podcast_item.dart';
+
 import 'package:kittens/models/post.dart';
 import 'package:http/http.dart' as http;
 

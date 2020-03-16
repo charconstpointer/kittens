@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:kittens/providers/playlist.dart';
+import 'package:kittens/routes/post_route.dart';
 import 'package:kittens/widgets/posts_widget.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (context) => Playlist(),
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -44,6 +52,27 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Scaffold(
+                        appBar: AppBar(
+                          title: Text("Playlist"),
+                        ),
+                        body: Consumer<Playlist>(
+                          builder: (BuildContext context, Playlist value,
+                              Widget child) {
+                            return Column(
+                                children: value.items
+                                    .map((item) => Text(item.title))
+                                    .toList());
+                          },
+                        ))),
+              );
+            }
+          },
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 title: Text(""), icon: Icon(Icons.library_music)),

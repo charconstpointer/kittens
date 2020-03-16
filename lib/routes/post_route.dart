@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kittens/models/podcast_item.dart';
+import 'package:kittens/models/podcasts/podcast_item.dart';
+
 import 'package:kittens/models/post.dart';
+import 'package:kittens/providers/playlist.dart';
 import 'package:kittens/services/podcasts_service.dart';
+import 'package:provider/provider.dart';
 
 class PostRoute extends StatefulWidget {
   final Post post;
@@ -107,7 +110,12 @@ class _PostRouteState extends State<PostRoute> {
                 children: <Widget>[
                   IconButton(icon: Icon(Icons.play_arrow), onPressed: () {}),
                   IconButton(icon: Icon(Icons.add_comment), onPressed: () {}),
-                  IconButton(icon: Icon(Icons.favorite), onPressed: () {})
+                  IconButton(
+                      icon: Icon(Icons.favorite),
+                      onPressed: () {
+                        Provider.of<Playlist>(context, listen: false)
+                            .addItem(snapshot.data[index]);
+                      })
                 ],
               ),
             )
