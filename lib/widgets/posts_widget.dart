@@ -15,8 +15,10 @@ class _PostsState extends State<Posts> {
   @override
   void initState() {
     var podcastsService = PodcastsService(
-        url: "https://podcasts.polskieradio.pl/api/podcasts?page=4");
-    _posts = podcastsService.getPodcasts();
+        url: "https://podcasts.polskieradio.pl/api/podcasts?pagesize=25");
+    setState(() {
+      _posts = podcastsService.getPodcasts();
+    });
   }
 
   @override

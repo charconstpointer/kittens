@@ -9,7 +9,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'M9',
-      theme: ThemeData(primarySwatch: Colors.blue, brightness: Brightness.dark),
+      theme: ThemeData(
+          accentColor: Colors.pinkAccent,
+          primarySwatch: Colors.blue,
+          brightness: Brightness.dark),
       home: MyHomePage(title: 'M9'),
     );
   }
@@ -40,6 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                title: Text(""), icon: Icon(Icons.library_music)),
+            BottomNavigationBarItem(
+                title: Text(""), icon: Icon(Icons.featured_play_list))
+          ],
+        ),
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {},
