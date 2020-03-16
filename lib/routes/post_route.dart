@@ -110,12 +110,7 @@ class _PostRouteState extends State<PostRoute> {
                 children: <Widget>[
                   IconButton(icon: Icon(Icons.play_arrow), onPressed: () {}),
                   IconButton(icon: Icon(Icons.add_comment), onPressed: () {}),
-                  IconButton(
-                      icon: Icon(Icons.favorite),
-                      onPressed: () {
-                        Provider.of<Playlist>(context, listen: false)
-                            .addItem(snapshot.data[index]);
-                      })
+                  _buildFav(snapshot.data[index])
                 ],
               ),
             )
@@ -142,6 +137,20 @@ class _PostRouteState extends State<PostRoute> {
             style: TextStyle(fontSize: 18),
           ),
         ));
+  }
+
+  Widget _buildFav(PodcastItem item) {
+    var isLiked = Provider.of<Playlist>(context, listen: false)
+        .items
+        .any((x) => x.title == item.title);
+    return IconButton(
+        icon: Icon(Icons.favorite),
+        color: isLiked ? Colors.red : Colors.white,
+        onPressed: () {
+          setState(() {
+            Provider.of<Playlist>(context, listen: false).addItem(item);
+          });
+        });
   }
 
   List<Widget> _getScoring(maxScore) {

@@ -9,7 +9,6 @@ class Playlist extends ChangeNotifier {
 
   void addItem(PodcastItem item) {
     if (!_items.contains(item)) {
-      print("added");
       _items.add(item);
       notifyListeners();
     }

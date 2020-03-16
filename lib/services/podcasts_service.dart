@@ -14,7 +14,6 @@ class PodcastsService {
   Future<List<Post>> getPodcasts() async {
     var response = await http.get(url);
     if (response.statusCode != 200) {
-      print(response.statusCode);
       return null;
     }
     var decoded = json.decode(response.body)['items'];
@@ -22,10 +21,8 @@ class PodcastsService {
   }
 
   Future<List<PodcastItem>> getPodcastItems(int id) async {
-    print(url + "/$id");
     var response = await http.get(url + "/$id");
     if (response.statusCode != 200) {
-      print(response.statusCode);
       return null;
     }
     var decoded = json.decode(response.body)['items'];
